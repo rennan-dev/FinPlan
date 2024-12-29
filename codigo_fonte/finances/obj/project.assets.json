@@ -2760,11 +2760,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\renna\\OneDrive\\Documentos\\projects\\c_sharp\\finances\\finances\\finances\\finances.csproj",
+      "projectUniqueName": "C:\\Users\\renna\\OneDrive\\Documentos\\git\\FinPlan\\codigo_fonte\\finances\\finances.csproj",
       "projectName": "finances",
-      "projectPath": "C:\\Users\\renna\\OneDrive\\Documentos\\projects\\c_sharp\\finances\\finances\\finances\\finances.csproj",
+      "projectPath": "C:\\Users\\renna\\OneDrive\\Documentos\\git\\FinPlan\\codigo_fonte\\finances\\finances.csproj",
       "packagesPath": "C:\\Users\\renna\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\renna\\OneDrive\\Documentos\\projects\\c_sharp\\finances\\finances\\finances\\obj\\",
+      "outputPath": "C:\\Users\\renna\\OneDrive\\Documentos\\git\\FinPlan\\codigo_fonte\\finances\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

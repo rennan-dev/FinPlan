@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZG/lk+SLu+s=",
+  "dgSpecHash": "isEUF8e0Z9A=",
   "success": true,
-  "projectFilePath": "C:\\Users\\renna\\OneDrive\\Documentos\\projects\\c_sharp\\finances\\finances\\finances\\finances.csproj",
+  "projectFilePath": "C:\\Users\\renna\\OneDrive\\Documentos\\git\\FinPlan\\codigo_fonte\\finances\\finances.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\renna\\.nuget\\packages\\automapper\\13.0.1\\automapper.13.0.1.nupkg.sha512",
     "C:\\Users\\renna\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
