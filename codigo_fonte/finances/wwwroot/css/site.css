@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    background-color: #282828;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.header-left h1 {
+    font-size: 32px;
+}
+
+.header-right {
+    display: flex;
+    gap: 20px;
+}
+
+.header-right a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.header-right a:hover {
+    color: #36a7ac;
+}
+
+.finance-section, .extrato-section {
+    max-width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f0f8ff;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.finance-section table, .extrato-section table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+}
+
+.title-date , .title-extrato{
+    text-align: center;
+    font-size: 20px;
+    background-color: rgb(36, 167, 172);
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #36a7ac;
+    color: white;
+}
+
+td {
+    font-size: 16px;
+}
+
+#totalSaldo, #totalFatura {
+    font-weight: bold;
+    background-color: #e0e0e0;
+}
+
+@media screen and (max-width: 768px) {
+    table {
+        width: 95%;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header-right {
+        margin-top: 10px;
+    }
+}

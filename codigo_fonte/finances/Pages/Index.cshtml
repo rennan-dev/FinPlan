@@ -1,0 +1,198 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Rennan's Finances";
+}
+
+<div class="forms-container">
+    <section class="add-instituicao">
+        <form id="instituicaoForm">
+            <fieldset>
+                <legend>Adicionar Instituição</legend>
+                <label for="instituicao">Instituição</label>
+                <input type="text" id="instituicao" name="nome" placeholder="Nome do Banco/Instituição" required>
+                <button type="submit">Adicionar</button>
+            </fieldset>
+        </form>
+    </section>
+
+    <section class="add-receita-despesa">
+        <form id="receitaDespesaForm">
+            <fieldset>
+                <legend>Adicionar Receita/Despesa</legend>
+
+                <!-- instituição -->
+                <label for="instituicao">Instituição</label>
+                <select name="instituicao" id="instituicaoSelect">
+                    <!-- onde ficarão as instituições -->
+                </select>
+                <div id="instituicaoMessage" style="display:none; color:red;">
+                    Não há instituições cadastradas. Por favor, adicione uma instituição primeiro.
+                </div>
+
+                <!-- tipo de Transação -->
+                <label for="tipo-transacao">Tipo de Transação</label>
+                <select name="tipo-transacao" id="tipo-transacao">
+                    <option value="Depósito">Depósito</option>
+                    <option value="Crédito">Crédito</option>
+                    <option value="Débito">Débito</option>
+                </select>
+
+                <!-- valor -->
+                <label for="quantidade">Quantidade</label>
+                <input type="number" id="quantidade" name="quantidade" placeholder="Digite o valor" step="0.01">
+
+                <!-- descrição da compra -->
+                <label for="descricao">Descrição da Transação</label>
+                <input type="text" id="descricao" name="descricao" placeholder="Digite uma descrição">
+
+                <!-- número de parcelas -->
+                <div id="parcelas-container">
+                    <label for="numero-parcelas">Número de Parcelas</label>
+                    <input type="number" id="numero-parcelas" name="numero-parcelas" placeholder="Digite a quantidade de parcelas" min="1">
+                </div>
+
+                <button type="submit">Adicionar</button>
+            </fieldset>
+        </form>
+    </section>
+</div>
+
+<section class="finance-section">
+    <table cellpadding="8" cellspacing="0" id="financasTable">
+        <thead>
+            <tr>
+                <th colspan="3" class="title-date">
+                    Dezembro 2024
+                </th>
+            </tr>
+            <tr>
+                <th>Instituição</th>
+                <th>Saldo Atual (R$)</th>
+                <th>Fatura Atual (R$)</th>
+            </tr>
+        </thead>
+        <tbody id="instituicoesTableBody">
+            <!-- onde ficarão as instituições -->
+        </tbody>
+        <tfoot>
+            <tr>
+                <td><strong>TOTAL</strong></td>
+                <td id="totalSaldo">R$ 0,00</td>
+                <td id="totalFatura">R$ 0,00</td>
+            </tr>
+        </tfoot>
+    </table>
+</section>
+
+<section class="extrato-section">
+    <table cellpadding="8" cellspacing="0" id="extratoTable">
+        <thead>
+            <tr>
+                <th colspan="6" class="title-extrato">
+                    Extrato
+                </th>
+            </tr>
+            <tr>
+                <th>Instituição</th>
+                <th>Tipo Transação</th>
+                <th>Valor</th>
+                <th>Parcelas</th>
+                <th>Descrição</th>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody id="extratoTableBody">
+            <!-- onde ficarão as instituições -->
+        </tbody>
+    </table>
+</section>
+
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const apiUrl = "https://localhost:7003/Instituicao";
+        const tableBody = document.getElementById("extratoTableBody");
+
+        const createRow = (instituicao, tipo, valor, parcelas, descricao, data) => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${instituicao}</td>
+                <td>${tipo}</td>
+                <td>${valor.toFixed(2)}</td>
+                <td>${parcelas || '-'}</td>
+                <td>${descricao}</td>
+                <td>${new Date(data).toLocaleDateString()}</td>
+            `;
+            tableBody.appendChild(row);
+        };
+
+        fetch(apiUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Erro ao buscar os dados da API");
+                }
+                return response.json();
+            })
+            .then(data => {
+                data.forEach(instituicao => {
+                    const nomeInstituicao = instituicao.nome;
+
+                    //processar faturas (crédito)
+                    instituicao.faturas.forEach(fatura => {
+                        createRow(
+                            nomeInstituicao,
+                            "Crédito",
+                            fatura.valor,
+                            fatura.quantidadeParcelas,
+                            fatura.descricao,
+                            fatura.data
+                        );
+                    });
+
+                    //processar débitos
+                    instituicao.debitos.forEach(debito => {
+                        createRow(
+                            nomeInstituicao,
+                            "Débito",
+                            debito.valor,
+                            null,
+                            debito.descricao,
+                            debito.data
+                        );
+                    });
+
+                    //processar depósitos
+                    instituicao.depositos.forEach(deposito => {
+                        createRow(
+                            nomeInstituicao,
+                            "Depósito",
+                            deposito.valor,
+                            null,
+                            deposito.descricao,
+                            deposito.data
+                        );
+                    });
+                });
+            })
+            .catch(error => {
+                console.error("Erro:", error);
+            });
+    });
+
+</script>
+               
+<script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const instituicaoFieldset = document.querySelector(".add-instituicao fieldset");
+        const receitaDespesaFieldset = document.querySelector(".add-receita-despesa fieldset");
+
+        const maxHeight = Math.max(
+            instituicaoFieldset.offsetHeight,
+            receitaDespesaFieldset.offsetHeight
+        );
+
+        instituicaoFieldset.style.height = `${maxHeight}px`;
+        receitaDespesaFieldset.style.height = `${maxHeight}px`;
+    });
+
+</script>
