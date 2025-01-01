@@ -4,7 +4,7 @@
 
 <h2>Backlog do Produto</h2>
 <p>Tem como objetivo facilitar o gerenciamento de requisitos e o desenvolvimento do sistema FinPlan.</p>
-<p>Está disponível em: <a href="https://github.com/rennan-dev/FinPlan/backlog.md">Backlog do Produto</a></p>
+<p>Está disponível em: <a href="https://github.com/users/rennan-dev/projects/4">Backlog do Produto</a></p>
 
 <h1>Manual de Instalação e Configuração do Projeto FinPlan</h1>
 
