@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "k2b9eQZ9cmBbkR3CuSTdZMgarMuN9bFYgr3+TrXoq68=",
+  "Source": "fintrack_api",
+  "BasePath": "_content/fintrack_api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
