@@ -1,4 +1,4 @@
-# FinPlan
+# FinPlan (em desenvolvimento)
 
 <h1>Organização do Projeto FinPlan</h1>
 
